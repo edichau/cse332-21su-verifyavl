@@ -5,38 +5,33 @@ import java.io.IOException;
 
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+import org.junit.Test;
+import static org.junit.Assert.*;
 
 
 public class VerifyAvlTests {
-
-    public static void main(String[] args) throws IOException, ParseException {
+    @Test
+    public void verifyAVLTest() throws IOException, ParseException {
+        // Parse the tests.json file as a json object
         Object data = new JSONParser().parse(new FileReader("tests.json"));
-        JSONArray jsonObject = (JSONArray) data;
-        boolean passed = true;
-        for (int i = 0; i < 3; i++)
-        {
-            JSONObject test = (JSONObject) jsonObject.get(i);
-            boolean result = (boolean) test.get("answer");
+        // Cast it to a JSONArray
+        JSONArray jsonArray = (JSONArray) data;
+        // For each element in the JSON array,
+        // i.e. For each test case,
+        for (Object o : jsonArray) {
+            // Cast it to a JSONObject
+            JSONObject test = (JSONObject) o;
+            // Get the actual answer from
+            boolean expected = (boolean) test.get("answer");
             JSONArray tree = (JSONArray) test.get("tree");
             AVLNode root = makeAvl(tree);
-            boolean student = verifyAvl.verifyAVL(root);
-            if (result != student)
-            {
-                passed = false;
-                System.out.println("Failed at " + tree);
-                break;
-            }
-        }
-        if (passed)
-        {
-            System.out.println("Passed");
+            boolean actual = verifyAvl.verifyAVL(root);
+            assertEquals("Failed: " + tree + " is a " + (expected ? "correct" : "wrong") + " tree but returned " + (actual ? "correct" : "wrong"), expected, actual);
         }
     }
 
-    public static AVLNode makeAvl(JSONArray data)
-    {
-        if (data == null)
-        {
+    public static AVLNode makeAvl(JSONArray data) {
+        if (data == null) {
             return null;
         }
         AVLNode left = makeAvl((JSONArray) data.get(2));
@@ -45,5 +40,4 @@ public class VerifyAvlTests {
         int height = (int) (long) data.get(1);
         return new AVLNode(key, height, left, right);
     }
-
 }
