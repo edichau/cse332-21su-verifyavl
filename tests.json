@@ -1,0 +1,10 @@
+[
+  // Regular AVL Tree
+  {"tree": [5,1,[2,0,null,null], [6,0,null,null]], "answer": true},
+  // Not a BST
+  {"tree": [1,1,[2,0,null,null],null], "answer": false},
+  // Wrong heights
+  {"tree": [2,1,[1,0,null,null],[4,1,[3,0,null,null],null]], "answer": false},
+  // Not an AVL
+  {"tree": [2,3,[1,0,null,null],[4,2,[3,0,null,null],[5,1,null,[6,0,null,null]]]], "answer": false}
+]
