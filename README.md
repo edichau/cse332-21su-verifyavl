@@ -22,7 +22,7 @@ We will be running an autograder with many hidden test cases to grade your submi
 We've given you a testing harness in `./test/VerifyAvlTests`. It reads in `./tests.json` and tests your verifyAvl method on the given tree.
 
 The `./tests.json` file contains as many test cases as you wish to add, where each case is on a separate line with the following format:
-  {"tree": [5,1,[2,0,null,null], [6,0,null,null]], "answer": true}
+  {"answer": true, "tree": [5,1,[2,0,null,null], [6,0,null,null]]}
 
 Note that the array representation of an AVLNode is as follows:
 [int key, int height, [AVLNode left], [AVLNode right]]
