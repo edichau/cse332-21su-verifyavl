@@ -1,3 +1,5 @@
+import verifyavl.AVLNode;
+import verifyavl.VerifyAVL;
 import org.json.simple.*;
 
 import java.io.FileReader;
@@ -25,7 +27,7 @@ public class VerifyAvlTests {
             boolean expected = (boolean) test.get("answer");
             JSONArray tree = (JSONArray) test.get("tree");
             AVLNode root = makeAvl(tree);
-            boolean actual = verifyAvl.verifyAVL(root);
+            boolean actual = VerifyAVL.verifyAVL(root);
             assertEquals("Failed: " + tree + " is a " + (expected ? "correct" : "wrong") + " tree but returned " + (actual ? "correct" : "wrong"), expected, actual);
         }
     }

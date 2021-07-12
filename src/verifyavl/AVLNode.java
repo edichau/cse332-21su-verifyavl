@@ -1,3 +1,5 @@
+package verifyavl;
+
 public class AVLNode {
     public AVLNode left;
     public AVLNode right;
